@@ -30,7 +30,7 @@ Aplikacja kładzie ogromny nacisk na wiarygodność danych (system reputacji) or
 Aplikacja korzysta z w pełni zrelacjonowanej bazy danych SQL. Poniższy schemat przedstawia relacje między tabelami (Użytkownicy, Stacje, Marki, Typy Paliw oraz Raporty Cenowe):
 
 
-![Schemat Relacji Bazy Danych](Images/database_schema.png)
+![Schemat Relacji Bazy Danych](Images/Relacje.jpg)
 
 ---
 
