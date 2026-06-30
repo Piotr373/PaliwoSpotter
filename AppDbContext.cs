@@ -1,7 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using System;
 using PaliwoSpotter;
-
+using Microsoft.Extensions.Configuration;
 using System.Collections.Generic;
 using System.Text;
 
@@ -17,8 +17,20 @@ namespace PaliwoSpotter
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            optionsBuilder.UseSqlServer("Data Source=(localdb)\\MSSQLLocalDB;Initial Catalog=PaliwoSpotterDB;Integrated Security=True",
-                x => x.UseNetTopologySuite());
+            if(!optionsBuilder.IsConfigured)
+            {
+                IConfigurationRoot configuration = new ConfigurationBuilder()
+                    .SetBasePath(Directory.GetCurrentDirectory())
+                    .AddJsonFile("appsettings.json")
+                    .Build();
+
+                string? connectionString = configuration.GetConnectionString("DefaultConnection");
+
+                optionsBuilder.UseSqlServer(connectionString);
+            }
+
+
+         
         }
     }
 }
